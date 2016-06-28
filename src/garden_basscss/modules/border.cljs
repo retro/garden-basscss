@@ -3,7 +3,7 @@
             [garden-basscss.util :refer [render-trbl]]))
 
 (def v-width (get-in @vars [:border :width]))
-(def v-radius (get-in @vars [:border :width]))
+(def v-radius (get-in @vars [:border :radius]))
 
 (defn gen-border-styles []
   (map
