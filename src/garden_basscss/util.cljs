@@ -3,14 +3,15 @@
             [garden.util :refer [space-join]]
             [garden.units :refer [unit?]]))
 
-(def spaces (:spaces @vars))
+(defn spaces [] (:spaces @vars))
 
 (defn gen-margin-padding [type]
   (let [r (range 0 5)
         prop (name type)
-        prefix (first prop)]
+        prefix (first prop)
+        s (spaces)]
     (map (fn [i]
-           (let [val (get spaces i)]
+           (let [val (get s i)]
              [[(str "." prefix i) {prop val}]
               (map (fn [dir]
                      (let [dir-prefix (first (str dir))]

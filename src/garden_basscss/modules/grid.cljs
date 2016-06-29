@@ -22,6 +22,6 @@
                                             :box-sizing 'border-box}]
               (gen-widths bp-name))))
 
-(def stylesheet [(gen-grid :sm)
-                 (gen-grid :md)
-                 (gen-grid :lg)])
+(defn stylesheet [] [(gen-grid :sm)
+                     (gen-grid :md)
+                     (gen-grid :lg)])

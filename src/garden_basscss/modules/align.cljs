@@ -1,6 +1,6 @@
 (ns garden-basscss.modules.align)
 
-(def stylesheet
+(defn stylesheet []
   [[:.align-baseline {:vertical-align 'baseline}]
    [:.align-top {:vertical-align 'top}]
    [:.align-middle {:vertical-align 'middle}]

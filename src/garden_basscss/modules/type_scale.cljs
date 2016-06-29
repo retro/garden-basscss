@@ -1,6 +1,8 @@
 (ns garden-basscss.modules.type-scale
   (:require (garden-basscss.vars :refer [vars])))
 
-(def type-scale (:type-scale @vars))
+(defn type-scale [] (:type-scale @vars))
 
-(def stylesheet [(map (fn [v] [(str ".h" v) {:font-size (get type-scale v)}]) (range 1 7))])
+(defn stylesheet []
+  (let [t (type-scale)]
+    [(map (fn [v] [(str ".h" v) {:font-size (get t v)}]) (range 1 7))]))

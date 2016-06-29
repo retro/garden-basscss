@@ -12,15 +12,15 @@
             [garden-basscss.modules.type-scale :as type-scale]
             [garden-basscss.modules.typography :as typography]))
 
-(def stylesheet 
-  [align/stylesheet
-   border/stylesheet
-   flexbox/stylesheet
-   grid/stylesheet
-   hide/stylesheet
-   layout/stylesheet
-   margin/stylesheet
-   padding/stylesheet
-   position/stylesheet
-   type-scale/stylesheet
-   typography/stylesheet])
+(defn stylesheet []
+  [(align/stylesheet)
+   (border/stylesheet)
+   (flexbox/stylesheet)
+   (grid/stylesheet)
+   (hide/stylesheet)
+   (layout/stylesheet)
+   (margin/stylesheet)
+   (padding/stylesheet)
+   (position/stylesheet)
+   (type-scale/stylesheet)
+   (typography/stylesheet)])

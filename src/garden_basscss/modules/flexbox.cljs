@@ -2,7 +2,7 @@
   (:require [garden-basscss.vars :refer [vars]]
             [garden.stylesheet :refer [at-media]]))
 
-(def breakpoints (:breakpoints @vars))
+(defn breakpoints [] (:breakpoints @vars))
 
 (defn add-prefix [val]
   (let [val (str val)]
@@ -27,25 +27,26 @@
            (conj classes 'stretch)
            classes))))
 
-(def stylesheet
-  [[:.flex {:display 'flex}]
-   (at-media (:sm breakpoints)
-             [:.sm-flex {:display 'flex}])
-   (at-media (:md breakpoints)
-             [:.md-flex {:display 'flex}])
-   (at-media (:lg breakpoints)
-             [:.lg-flex {:display 'flex}])
-   [:.flex-column {:flex-direction 'column}]
-   [:.flex-wrap {:flex-wrap 'wrap}]
-   (gen-items-self "items")
-   (gen-items-self "self")
-   (gen-justify-content "justify")
-   (gen-justify-content "content")
-   [:.flex-auto {:flex "1 1 auto"
-                 :min-width 0
-                 :min-height 0}]
-   [:.flex-none {:flex "none"}]
-   [:.order-0 {:order 0}]
-   [:.order-1 {:order 1}]
-   [:.order-2 {:order 2}]
-   [:.order-last {:order 99999}]])
+(defn stylesheet []
+  (let [bp (breakpoints)]
+    [[:.flex {:display 'flex}]
+     (at-media (:sm bp)
+               [:.sm-flex {:display 'flex}])
+     (at-media (:md bp)
+               [:.md-flex {:display 'flex}])
+     (at-media (:lg bp)
+               [:.lg-flex {:display 'flex}])
+     [:.flex-column {:flex-direction 'column}]
+     [:.flex-wrap {:flex-wrap 'wrap}]
+     (gen-items-self "items")
+     (gen-items-self "self")
+     (gen-justify-content "justify")
+     (gen-justify-content "content")
+     [:.flex-auto {:flex "1 1 auto"
+                   :min-width 0
+                   :min-height 0}]
+     [:.flex-none {:flex "none"}]
+     [:.order-0 {:order 0}]
+     [:.order-1 {:order 1}]
+     [:.order-2 {:order 2}]
+     [:.order-last {:order 99999}]]))
