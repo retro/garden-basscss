@@ -5,16 +5,18 @@
 (defn spaces [] (:spaces @vars))
 
 (defn neg [unit]
-  (let [mag (:magnitude unit)]
-    (assoc unit :magnitude (- mag (* 2 mag)))))
+  (if (= unit 0)
+    0
+    (let [mag (:magnitude unit)]
+      (assoc unit :magnitude (- mag (* 2 mag))))))
 
 (defn stylesheet []
-  (let [s (spaces)]
+  (let [s (spaces)] 
     [(gen-margin-padding :margin)
-     (map (fn [i]
-            [(str ".mxn" i) {:margin-left (neg (get s i))
-                             :margin-right (neg (get s i))}])
-          (range 1 5))
+     (map (fn [[key val]]
+            [(str ".mxn" key) {:margin-left (neg val)
+                               :margin-right (neg val)}])
+          s)
      [:.ml-auto {:margin-left 'auto}]
      [:.mr-auto {:margin-right 'auto}]
      [:.mx-auto {:margin-left 'auto

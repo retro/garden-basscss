@@ -17,9 +17,9 @@
         breakpoint (bp breakpoints)]
     (at-media breakpoint
               [(str "." bp-name "-col"){:float 'left
-                                     :box-sizing 'border-box}]
+                                        :box-sizing 'border-box}]
               [(str "." bp-name "-col-right") {:float 'right
-                                            :box-sizing 'border-box}]
+                                               :box-sizing 'border-box}]
               (gen-widths bp-name))))
 
 (defn stylesheet [] [(gen-grid :sm)

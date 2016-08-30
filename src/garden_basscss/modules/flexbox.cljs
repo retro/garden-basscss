@@ -45,6 +45,7 @@
      [:.flex-auto {:flex "1 1 auto"
                    :min-width 0
                    :min-height 0}]
+     [:.flex-grow {:flex "1 0 auto"}]
      [:.flex-none {:flex "none"}]
      [:.order-0 {:order 0}]
      [:.order-1 {:order 1}]

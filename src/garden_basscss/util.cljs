@@ -6,21 +6,19 @@
 (defn spaces [] (:spaces @vars))
 
 (defn gen-margin-padding [type]
-  (let [r (range 0 5)
+  (let [s (spaces)
         prop (name type)
-        prefix (first prop)
-        s (spaces)]
-    (map (fn [i]
-           (let [val (get s i)]
-             [[(str "." prefix i) {prop val}]
-              (map (fn [dir]
-                     (let [dir-prefix (first (str dir))]
-                       [(str "." prefix dir-prefix i) {(str prop "-" dir) val}]))
-                   ['top 'right 'bottom 'left])
-              [(str "." prefix "x" i) {(str prop "-left") val
+        prefix (first prop)]
+    (map (fn [[key val]]
+           [[(str "." prefix key) {prop val}]
+            (map (fn [dir]
+                   (let [dir-prefix (first (str dir))]
+                     [(str "." prefix dir-prefix key) {(str prop "-" dir) val}]))
+                 ['top 'right 'bottom 'left])
+            [(str "." prefix "x" key) {(str prop "-left") val
                                        (str prop "-right") val}]
-              [(str "." prefix "y" i) {(str prop "-top") val
-                                       (str prop "-bottom") val}]])) r)))
+            [(str "." prefix "y" key) {(str prop "-top") val
+                                       (str prop "-bottom") val}]]) s)))
 
 (defn render-trbl [trbl]
   (space-join
