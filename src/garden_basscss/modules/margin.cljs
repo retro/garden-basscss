@@ -14,8 +14,14 @@
   (let [s (spaces)] 
     [(gen-margin-padding :margin)
      (map (fn [[key val]]
-            [(str ".mxn" key) {:margin-left (neg val)
-                               :margin-right (neg val)}])
+            [[(str ".mxn" key) {:margin-left (neg val)
+                                :margin-right (neg val)}]
+             [(str ".myn" key) {:margin-top (neg val)
+                                :margin-bottom (neg val)}]
+             [(str ".mn" key) {:margin-top (neg val)
+                               :margin-bottom (neg val)
+                               :margin-left (neg val)
+                               :margin-right (neg val)}]])
           s)
      [:.ml-auto {:margin-left 'auto}]
      [:.mr-auto {:margin-right 'auto}]
