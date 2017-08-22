@@ -8,7 +8,7 @@
   (let [widths (range 1 13)
         max-width 12]
     (map (fn [width]
-           (let [val (if (= width max-width) "100%" (str "calc(" width "/12 * 100%)"))]
+           (let [val (if (= width max-width) "100%" (str "calc(" width "/12 * 99.999%)"))]
              [(str "." bp-name "-col-" width) {:width val}]))
          widths)))
 
