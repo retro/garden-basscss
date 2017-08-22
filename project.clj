@@ -1,4 +1,4 @@
-(defproject org.clojars.mihaelkonjevic/garden-basscss "0.2.0"
+(defproject org.clojars.mihaelkonjevic/garden-basscss "0.2.1"
   :description "Port of BassCSS library to Garden"
   :url "http://github.com/retro/garden-basscss"
   :license {:name "MIT"}
