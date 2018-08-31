@@ -4,13 +4,15 @@
 
 (defn widths [] (:widths @vars))
 
-(defn stylesheet [] [(gen-list :display ['inline 'block 'inline-block 'table 'table-cell])
-                     (gen-list :overflow ['hidden 'scroll 'auto] true)
-                     [:.clearfix
-                      [:&:before :&:after {:content "\" \""
-                                           :display 'table}]
-                      [:&:after {:clear 'both}]]
-                     (gen-list :float ['left 'right])
-                     [:.fit {:max-width "100%"}]
-                     (map (fn [v] [(str ".max-width-" v) {:max-width (get (widths) v)}]) (range 1 5))
-                     [:.border-box {:box-sizing 'border-box}]])
+(defn stylesheet []
+  (let [ws (widths)]
+    [(gen-list :display ['inline 'block 'inline-block 'table 'table-cell])
+     (gen-list :overflow ['hidden 'scroll 'auto] true)
+     [:.clearfix
+      [:&:before :&:after {:content "\" \""
+                           :display 'table}]
+      [:&:after {:clear 'both}]]
+     (gen-list :float ['left 'right])
+     [:.fit {:max-width "100%"}]
+     (map (fn [v] [(str ".max-width-" v) {:max-width (get ws v)}]) (range 1 (inc (count ws))))
+     [:.border-box {:box-sizing 'border-box}]]))
