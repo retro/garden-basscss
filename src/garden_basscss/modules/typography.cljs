@@ -13,6 +13,10 @@
                        dir)]
            [(str "." class) {:text-align dir}])) ['left 'center 'right 'justify]))
 
+(defn gen-font-weights []
+  (map (fn [fw]
+         [(str ".fw-" (* 100 fw)) {:font-weight (str (* 100 fw))}]) (range 1 10)))
+
 (defn stylesheet []
   (let [t (typography)
         lh (line-heights)]
@@ -25,6 +29,7 @@
      [:.caps {:text-transform 'uppercase
               :letter-spacing (:caps-letter-spacing t)}]
      (gen-align)
+     (gen-font-weights)
      [:.nowrap {:white-space 'nowrap}]
      [:.break-word {:word-wrap 'break-word}]
      (map (fn [v] [(str ".line-height-" v) {:line-height (get lh v)}]) (range 1 5))
