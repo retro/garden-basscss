@@ -4,24 +4,39 @@
 
 (def breakpoints (:breakpoints @vars))
 
-(defn gen-widths [bp-name]
-  (let [widths (range 1 13)
-        max-width 12]
-    (map (fn [width]
-           (let [val (if (= width max-width) "100%" (str "calc(" width "/12 * 99.999%)"))]
-             [(str "." bp-name "-col-" width) {:width val}]))
-         widths)))
+(defn gen-widths 
+  ([bp-name]
+   (let [widths (range 1 13)
+         max-width 12]
+     (map (fn [width]
+            (let [val (if (= width max-width) "100%" (str "calc(" width "/12 * 99.999%)"))]
+              [(str "." bp-name "-col-" width) {:width val}]))
+          widths)))
+  ([]
+   (let [widths (range 1 13)
+         max-width 12]
+     (map (fn [width]
+            (let [val (if (= width max-width) "100%" (str "calc(" width "/12 * 99.999%)"))]
+              [(str ".col-" width) {:width val}]))
+          widths))))
 
-(defn gen-grid [bp]
-  (let [bp-name (name bp)
-        breakpoint (bp breakpoints)]
-    (at-media breakpoint
-              [(str "." bp-name "-col"){:float 'left
-                                        :box-sizing 'border-box}]
-              [(str "." bp-name "-col-right") {:float 'right
-                                               :box-sizing 'border-box}]
-              (gen-widths bp-name))))
+(defn gen-grid 
+  ([bp]
+   (let [bp-name (name bp)
+         breakpoint (bp breakpoints)]
+     (at-media breakpoint
+               [(str "." bp-name "-col"){:float 'left
+                                         :box-sizing 'border-box}]
+               [(str "." bp-name "-col-right") {:float 'right
+                                                :box-sizing 'border-box}]
+               (gen-widths bp-name))))
+  ([]
+   [[(str ".col"){:float 'left
+                  :box-sizing 'border-box}]
+    (gen-widths)]))
 
-(defn stylesheet [] [(gen-grid :sm)
+(defn stylesheet [] [(gen-grid)
+                     (gen-grid :sm)
                      (gen-grid :md)
-                     (gen-grid :lg)])
+                     (gen-grid :lg)
+                     (gen-grid :xl)])
